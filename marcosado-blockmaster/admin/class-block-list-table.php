@@ -49,7 +49,7 @@ class Marcosado_Block_List_Table extends \WP_List_Table {
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $orderby = isset($_GET['orderby']) ? sanitize_sql_orderby(wp_unslash($_GET['orderby'])) : 'b.name';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $order = isset($_GET['order']) && strtolower(wp_unslash($_GET['order'])) === 'desc' ? 'DESC' : 'ASC';
+        $order = isset($_GET['order']) && strtolower(sanitize_text_field(wp_unslash($_GET['order']))) === 'desc' ? 'DESC' : 'ASC';
 
         $query = "SELECT SQL_CALC_FOUND_ROWS b.slug, b.name, b.description, f.name as folder_name FROM {$wpdb->prefix}marcosado_blocks b LEFT JOIN {$wpdb->prefix}marcosado_block_folders f ON b.folder_id = f.id";
         

@@ -149,9 +149,25 @@ class Marcosado_Gutenberg
             '1.8.0',
             true
         );
+        $script = '
+document.addEventListener("DOMContentLoaded", function() {
+    if (!window.lucide) return;
+    lucide.createIcons();
+    const observer = new MutationObserver(function(mutations) {
+        let shouldUpdate = false;
+        for (let i = 0; i < mutations.length; i++) {
+            if (mutations[i].addedNodes.length > 0) {
+                shouldUpdate = true;
+                break;
+            }
+        }
+        if (shouldUpdate) lucide.createIcons();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+});';
         wp_add_inline_script(
             'lucide-icons',
-            'document.addEventListener("DOMContentLoaded", function() { if (window.lucide) { lucide.createIcons(); } });',
+            $script,
             'after'
         );
     }
