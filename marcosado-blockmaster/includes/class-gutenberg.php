@@ -153,15 +153,17 @@ class Marcosado_Gutenberg
 document.addEventListener("DOMContentLoaded", function() {
     if (!window.lucide) return;
     lucide.createIcons();
-    const observer = new MutationObserver(function(mutations) {
-        let shouldUpdate = false;
-        for (let i = 0; i < mutations.length; i++) {
-            if (mutations[i].addedNodes.length > 0) {
-                shouldUpdate = true;
-                break;
-            }
-        }
-        if (shouldUpdate) lucide.createIcons();
+    
+    let debounceTimer;
+    const observer = new MutationObserver(function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+            // Déconnexion temporaire pour éviter la boucle infinie
+            observer.disconnect();
+            lucide.createIcons();
+            // Reconnexion
+            observer.observe(document.body, { childList: true, subtree: true });
+        }, 500);
     });
     observer.observe(document.body, { childList: true, subtree: true });
 });';
