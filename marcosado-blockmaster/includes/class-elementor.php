@@ -212,13 +212,8 @@ add_action('elementor/init', function() {
             }
 
             $slug = sanitize_key($this->bloc->slug);
-            $_bm_file_to_include = "bmcode://" . $slug;
-            
-            extract($attributes, EXTR_SKIP);
-            ob_start();
-            include $_bm_file_to_include;
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo ob_get_clean();
+            echo Marcosado_Renderer::render($slug, $attributes);
         }
 
         private function map_type(string $type): string {

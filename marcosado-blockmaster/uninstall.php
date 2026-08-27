@@ -18,7 +18,7 @@ $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}marcosado_blocks_history" );
 
 // Supprimer le dossier d'uploads s'il existait dans les anciennes versions
 $marcosado_upload_dir = wp_upload_dir();
-$marcosado_blocks_dir = $marcosado_upload_dir['basedir'] . '/marcosado-php-block-builder/';
+$marcosado_blocks_dir = $marcosado_upload_dir['basedir'] . '/blockmaster/';
 
 global $wp_filesystem;
 if ( empty( $wp_filesystem ) ) {

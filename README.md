@@ -1,6 +1,6 @@
-# 🛠 Marcosado PHP Block Builder
+# 🛠 BlockMaster
 
-**Marcosado PHP Block Builder** is a powerful WordPress plugin designed for developers. It allows you to create custom Gutenberg blocks autonomously using only PHP, Tailwind CSS, and dynamic attributes (sidebar options). Write your logic in PHP and see the results instantly in the editor.
+**BlockMaster** is a powerful WordPress plugin designed for developers. It allows you to create custom Gutenberg blocks autonomously using only PHP, Tailwind CSS, and dynamic attributes (sidebar options). Write your logic in PHP and see the results instantly in the editor.
 
 ---
 
@@ -19,10 +19,10 @@
 
 ## 🤖 AI Prompt: Generate Blocks in One Click
 
-Copy and paste the text below into your favorite AI (ChatGPT, Claude, Gemini, etc.) to generate a block that is 100% compatible with Marcosado PHP Block Builder:
+Copy and paste the text below into your favorite AI (ChatGPT, Claude, Gemini, etc.) to generate a block that is 100% compatible with BlockMaster:
 
 ```markdown
-Tu es un assistant IA spécialisé pour WordPress et le plugin "Marcosado PHP Block Builder".
+Tu es un assistant IA spécialisé pour WordPress et le plugin "BlockMaster".
 Génère le code complet d'un bloc personnalisé en respectant strictement ces consignes :
 
 1. DÉCLARATION DES ATTRIBUTS (OPTIONNEL) :

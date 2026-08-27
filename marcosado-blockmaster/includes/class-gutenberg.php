@@ -78,12 +78,7 @@ class Marcosado_Gutenberg
             register_block_type('marcosado-block-builder/' . $block->slug, [
                 'attributes'      => $gutenberg_attrs,
                 'render_callback' => function ($attributes, $content) use ($block) {
-                    $slug_clean = sanitize_key($block->slug);
-                    $_bm_file_to_include = "bmcode://" . $slug_clean;
-                    extract($attributes, EXTR_SKIP);
-                    ob_start();
-                    include $_bm_file_to_include;
-                    return ob_get_clean();
+                    return Marcosado_Renderer::render($block->slug, $attributes);
                 },
                 'category' => 'design',
                 'title'    => $block->name,
@@ -95,8 +90,8 @@ class Marcosado_Gutenberg
     {
         global $wpdb;
 
-        $js_path = MARCOSADO_PLUGIN_URL . 'editor-blocks.js';
-        $js_file = MARCOSADO_PLUGIN_DIR . 'editor-blocks.js';
+        $js_path = MARCOSADO_PLUGIN_URL . 'assets/js/editor-blocks.js';
+        $js_file = MARCOSADO_PLUGIN_DIR . 'assets/js/editor-blocks.js';
 
         wp_enqueue_script(
             'marcosado-block-builder-editor',
@@ -134,7 +129,7 @@ class Marcosado_Gutenberg
     {
         wp_enqueue_script(
             'marcosado-block-builder-tailwind',
-            MARCOSADO_PLUGIN_URL . 'tailwind.min.js',
+            MARCOSADO_PLUGIN_URL . 'assets/js/tailwind.min.js',
             [], '3.4.17', false
         );
         wp_add_inline_script('marcosado-block-builder-tailwind', '
@@ -149,7 +144,7 @@ class Marcosado_Gutenberg
     {
         wp_enqueue_script(
             'lucide-icons',
-            MARCOSADO_PLUGIN_URL . 'assets/lucide.min.js',
+            MARCOSADO_PLUGIN_URL . 'assets/js/lucide.min.js',
             [],
             '1.8.0',
             true
