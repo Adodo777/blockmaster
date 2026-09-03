@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '- `color` : sélecteur de couleur (renvoie un code hexadécimal, ex: #ffffff).\n' +
         '- `image` : sélecteur d\'image (renvoie l\'URL de l\'image).\n' +
         '- `select` : menu déroulant. Le `default` doit suivre le format `valeur1:Label 1,valeur2:Label 2`.\n' +
-        '- `repeater` : liste d\'éléments répétables. Tu DOIS fournir la clé `sub_fields` avec un JSON encodé contenant la définition des sous-champs.\n\n' +
+        '- `repeater` : liste d\'éléments répétables. Tu DOIS fournir la clé `sub_fields` avec un tableau contenant la définition des sous-champs.\n\n' +
         'Exemple de déclaration complète :\n' +
         '```php\n' +
         '<?php\n' +
@@ -105,10 +105,10 @@ document.addEventListener('DOMContentLoaded', function() {
         '    \'elements\' => [\n' +
         '        \'type\' => \'repeater\',\n' +
         '        \'label\' => \'Liste d\\\'éléments\',\n' +
-        '        \'sub_fields\' => json_encode([\n' +
+        '        \'sub_fields\' => [\n' +
         '            \'nom\' => [\'type\' => \'text\', \'label\' => \'Nom\', \'default\' => \'\'],\n' +
         '            \'photo\' => [\'type\' => \'image\', \'label\' => \'Photo\', \'default\' => \'\']\n' +
-        '        ])\n' +
+        '        ]\n' +
         '    ]\n' +
         '];\n' +
         '?>\n' +

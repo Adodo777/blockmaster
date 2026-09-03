@@ -3,7 +3,7 @@ Contributors: marcosado
 Tags: gutenberg, elementor, blocks, custom-blocks, tailwind
 Requires at least: 5.9
 Tested up to: 7.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -21,6 +21,13 @@ BlockMaster is a powerful WordPress plugin designed for developers. It allows yo
 3. Go to "BlockMaster" to create your first block.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix: Correction du parseur AST déterministe pour l'enregistrement des attributs $bm_attributes.
+* Fix: Prise en charge des valeurs booléennes (true/false) et null dans les attributs.
+* Fix: Support complet des repeaters avec sub_fields déclarés sous forme de tableau ou de chaîne JSON.
+* Fix: Tolérance pour json_encode(...) et les nombres négatifs.
+* Amélioration: Mise à jour du prompt système IA.
 
 = 1.0.0 =
 * Initial public release.

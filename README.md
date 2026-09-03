@@ -35,7 +35,7 @@ $bm_attributes = [
         'label' => 'Label affiché',
         'default' => 'valeur_par_defaut', // pour select : 'val1:Label1,val2:Label2'
         'section' => 'Général', // optionnel
-        'sub_fields' => json_encode(['sous_cle' => ['type' => 'text', 'default' => '']]) // requis uniquement si type='repeater'
+        'sub_fields' => ['sous_cle' => ['type' => 'text', 'default' => '']] // requis uniquement si type='repeater'
     ],
 ];
 ?>

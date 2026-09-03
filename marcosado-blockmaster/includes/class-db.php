@@ -88,6 +88,8 @@ class Marcosado_DB
         }
 
         self::regenerate_all_blocks();
+        self::resync_all_blocks();
+        update_option('marcosado_version', MARCOSADO_VERSION);
     }
 
     /**
@@ -112,9 +114,31 @@ class Marcosado_DB
         }
     }
 
+    /**
+     * Resynchronise automatiquement les attributs de tous les blocs existants depuis leur code PHP.
+     */
+    public static function resync_all_blocks(): void
+    {
+        global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $blocks = $wpdb->get_results("SELECT slug, code FROM {$wpdb->prefix}marcosado_blocks");
+        if (!empty($blocks)) {
+            foreach ($blocks as $block) {
+                Marcosado_Parser::sync_attributes_from_code($block->slug, $block->code);
+            }
+        }
+    }
+
     public static function maybe_setup_tables(): void
     {
         global $wpdb;
+
+        $installed_ver = get_option('marcosado_version', '1.0.0');
+        if (version_compare($installed_ver, MARCOSADO_VERSION, '<')) {
+            self::resync_all_blocks();
+            update_option('marcosado_version', MARCOSADO_VERSION);
+        }
+
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         $exists = $wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}marcosado_blocks'");
         if (!$exists) {
